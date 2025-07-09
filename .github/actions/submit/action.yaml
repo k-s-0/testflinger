@@ -172,8 +172,8 @@ runs:
         )
         echo "::group::ALL_ARGS: $(printf '%q ' testflinger "${ALL_ARGS[@]}")"
         echo "::endgroup::"
-        JOB_ID=$( testflinger "${ALL_ARGS[@]}" )
-        echo "id=$JOB_ID" >> $GITHUB_OUTPUT
+        #JOB_ID=$( testflinger "${ALL_ARGS[@]}" )
+        #echo "id=$JOB_ID" >> $GITHUB_OUTPUT
         echo "::endgroup::"
         echo "::notice::Submitted job $JOB_ID"
 
