@@ -164,12 +164,14 @@ runs:
             2) AUTH_ARGS=( --client_id "$CLIENT_ID" --secret_key "$SECRET_KEY" ) ;;
             1) echo "::error::Both 'client-id' and 'secret-key' must be provided or neither"; exit 1 ;;
         esac
-        JOB_ID=$(\
-          testflinger --server $SERVER submit --quiet \
+        ALL_ARGS=( \
+          --server "$SERVER" submit --quiet \
           ${RELATIVE_TO:+--attachments-relative-to "$RELATIVE_TO"} \
           "${AUTH_ARGS[@]}" \
-          "$JOB"
+          "$JOB" \
         )
+        echo "ALL_ARGS: $(printf '%q ' testflinger "${ALL_ARGS[@]}")"
+        JOB_ID=$( testflinger "${ALL_ARGS[@]}" )
         echo "id=$JOB_ID" >> $GITHUB_OUTPUT
         echo "::endgroup::"
         echo "::notice::Submitted job $JOB_ID"
