@@ -158,8 +158,8 @@ runs:
         set -x
         echo "::group::Submit job to the Testflinger server"
         AUTH_ARGS_COUNT=0
-        [[ -n $CLIENT_ID ]] && ((AUTH_ARGS_COUNT++))
-        [[ -n $SECRET_KEY ]] && ((AUTH_ARGS_COUNT++))
+        [[ -n $CLIENT_ID ]] && ((++AUTH_ARGS_COUNT))
+        [[ -n $SECRET_KEY ]] && ((++AUTH_ARGS_COUNT))
         case $AUTH_ARGS_COUNT in
             0) AUTH_ARGS=() ;;
             2) AUTH_ARGS=( --client_id "$CLIENT_ID" --secret_key "$SECRET_KEY" ) ;;
@@ -172,7 +172,6 @@ runs:
           "$JOB" \
         )
         printf 'ALL_ARGS: %q\n' "${ALL_ARGS[@]}" >&2
-        exit 0
         JOB_ID=$( testflinger "${ALL_ARGS[@]}" )
         echo "id=$JOB_ID" >> $GITHUB_OUTPUT
         echo "::endgroup::"
