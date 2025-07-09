@@ -168,7 +168,7 @@ runs:
         JOB_ID=$(\
           testflinger --server "$SERVER" submit --quiet \
           ${RELATIVE_TO:+--attachments-relative-to "$RELATIVE_TO"} \
-          "$AUTH_ARGS" \
+          $AUTH_ARGS \
           "$JOB" \
         )
         echo "id=$JOB_ID" >> $GITHUB_OUTPUT
