@@ -170,7 +170,8 @@ runs:
           "${AUTH_ARGS[@]}" \
           "$JOB" \
         )
-        echo "ALL_ARGS: $(printf '%q ' testflinger "${ALL_ARGS[@]}")"
+        echo "::group::ALL_ARGS: $(printf '%q ' testflinger "${ALL_ARGS[@]}")"
+        echo "::endgroup::"
         JOB_ID=$( testflinger "${ALL_ARGS[@]}" )
         echo "id=$JOB_ID" >> $GITHUB_OUTPUT
         echo "::endgroup::"
