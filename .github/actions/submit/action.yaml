@@ -155,6 +155,7 @@ runs:
         SECRET_KEY: ${{ inputs.secret-key }}
         JOB: ${{ steps.create-job-file.outputs.job }}
       run: |
+        set -x
         echo "::group::Submit job to the Testflinger server"
         AUTH_ARGS_COUNT=0
         [[ -n $CLIENT_ID ]] && ((AUTH_ARGS_COUNT++))
